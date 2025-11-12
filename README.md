@@ -36,6 +36,26 @@ Examples:
   ./bankers data1.txt
 ```
 
+### Input Files
+Contents from [data3.txt](data3.txt)
+```text
+0 1 2
+2 0 1
+1 2 1
+3 0 0
+1 1 1
+7 5 3
+6 4 2
+5 3 3
+4 3 3
+4 2 2
+3 3 2
+```
+
+- The first 5 rows represent the Allocation Matrix.
+- The next 5 rows represent the Maximum Demand Matrix.
+- The last row represents the Available Resources.
+
 ## Goal of this Repository
 Implement the Banker's algorithm to answer the following question
 - Is the system in a safe-state? If *yes*, then what is the safe sequence?
@@ -106,23 +126,3 @@ Allocation specifies the resources currently allocated to process P\_i and Need 
 `Safe` State: There exists at least one sequence of processes such that each process can obtain the needed resources, complete its execution, release its resources, and thus allow other processes to eventually complete without entering a deadlock.
 
 `Unsafe` State: Even though the system can still allocate resources to some processes, there is no guarantee that all processes can finish without potentially causing a deadlock.
-
-### Input Files
-Contents from [data3.txt](data3.txt)
-```text
-0 1 2
-2 0 1
-1 2 1
-3 0 0
-1 1 1
-7 5 3
-6 4 2
-5 3 3
-4 3 3
-4 2 2
-3 3 2
-```
-
-- The first 5 rows represent the Allocation Matrix.
-- The next 5 rows represent the Maximum Demand Matrix.
-- The last row represents the Available Resources.
