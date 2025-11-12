@@ -1,11 +1,25 @@
 # Bankers Algorithm
 
-## Banker's Algorithm for deadlock avoidance
+## Problem: Banker's Algorithm for deadlock avoidance
 Considering a system with five processes P\_0 through P\_4 and three resources of type A, B, C.
 Resource type A has 10 instances, B has 5 instances and type C has 7 instances. Suppose at
 time t0 following snapshot of the system has been taken:
 
 ![snapshot at time T_0](t_0_snapshot.png)
+
+### Question
+Implement the Banker's algorithm to answer the following question
+- Is the system in a safe-state? If *yes*, then what is the safe sequence?
+
+### Solution
+The Environment of the system is we have `5` processes and `3` resource types.<br>
+After running Bankers Algorithm:
+```bash
+./bankers system.txt
+```
+
+Is the system in a safe-state? `YES`.<br>
+If *yes*, then what is the safe sequence? `P3 -> P4 -> P1 -> P2 -> P0`.
 
 ## Build
 ### Dependencies:
@@ -55,10 +69,6 @@ Contents from [data3.txt](data3.txt)
 - The first 5 rows represent the Allocation Matrix.
 - The next 5 rows represent the Maximum Demand Matrix.
 - The last row represents the Available Resources.
-
-## Goal of this Repository
-Implement the Banker's algorithm to answer the following question
-- Is the system in a safe-state? If *yes*, then what is the safe sequence?
 
 ## Expected Outputs
 #### Output during Safe State
