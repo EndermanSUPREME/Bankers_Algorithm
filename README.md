@@ -1,33 +1,71 @@
 # Bankers Algorithm
 
-## Banker’s Algorithm for deadlock avoidance
+## Banker's Algorithm for deadlock avoidance
 Considering a system with five processes P\_0 through P\_4 and three resources of type A, B, C.
 Resource type A has 10 instances, B has 5 instances and type C has 7 instances. Suppose at
 time t0 following snapshot of the system has been taken:
 
 ![snapshot at time T_0](t_0_snapshot.png)
 
+## Build
+### Dependencies:
+Install the following dependencies before attempting to build:
+```bash
+sudo apt update && sudo apt install g++
+```
+
+### Build instructions
+```bash
+git clone https://github.com/EndermanSUPREME/Bankers_Algorithm.git
+cd Bankers_Algorithm
+chmod +x run.sh
+./run.sh
+```
+
+*More about run.sh*:<br>
+`./run.sh` is a bash-script used to automate program compiling and execution of the binary `bankers`.
+```
+Usage: ./run.sh [compile|run_all|help]
+
+Options:
+  help          Show this page
+  compile       Compile Bankers
+  run_all       Run Bankers against data1-3.txt files
+
+Examples:
+  ./bankers data1.txt
+```
+
 ## Goal of this Repository
-Implement the Banker’s algorithm to answer the following question：Is the system in a safe state?
-If Yes, then what is the safe sequence?
+Implement the Banker's algorithm to answer the following question
+- Is the system in a safe-state? If *yes*, then what is the safe sequence?
 
 ## Expected Outputs
 #### Output during Safe State
 ```
-./bankers
-Enter the input file name: data1.txt
-System is in a safe state, safe sequence is: P1 -> P3 -> P4 -> P0 -> P2
+./bankers data1.txt
+[*] Reading ./data1.txt
+[+] Finished reading ./data1.txt
+[*] Running Environment
+ |___ Max Processes -> 5
+ |___ Max Resources -> 3
+[+] System is in a Safe state.
+ |__ safe-sequence: P1 -> P3 -> P4 -> P0 -> P2
 ```
 
 #### Output during Unsafe State
 ```
-./bankers
-Enter the input file name: data2.txt
-System is not in a safe state, Banker's algorithm cannot be applied safely.
+./bankers data2.txt
+[*] Reading data2.txt
+[+] Finished reading data2.txt
+[*] Running Environment
+ |___ Max Processes -> 5
+ |___ Max Resources -> 3
+[-] System is in an Unsafe state.
 ```
 
 ## Proof of Concept
-
+![screenshot of example execution](demo.png)
 
 ## Deep Dive into Banker's Algorithm
 According to [geeksforgeeks](https://www.geeksforgeeks.org/operating-systems/bankers-algorithm-in-operating-system-2/):
@@ -42,7 +80,7 @@ avoiding unsafe states that could lead to deadlocks.
 
 
 #### Components of the Banker's Algorithm
-The following Data structures are used to implement the Banker’s Algorithm:
+The following Data structures are used to implement the Banker's Algorithm:
 Let `n` be the number of processes in the system and `m` be the number of resource types.
 
 1. Available
@@ -50,15 +88,15 @@ Let `n` be the number of processes in the system and `m` be the number of resour
 - Available[ j ] = k means there are `k` instances of resource type R\_j
 
 2. Max
-- It is a 2-d array of size `n*m` that defines the maximum demand of each process in a system.
+- It is a 2-D array of size `n*m` that defines the maximum demand of each process in a system.
 - Max[ i, j ] = k means process P\_i may request at most `k` instances of resource type R\_j.
 
 3. Allocation
-- It is a 2-d array of size `n*m` that defines the number of resources of each type currently allocated to each process.
+- It is a 2-D array of size `n*m` that defines the number of resources of each type currently allocated to each process.
 - Allocation[ i, j ] = k means process P\_i is currently allocated `k` instances of resource type R\_j
 
 4. Need
-- It is a 2-d array of size `n*m` that indicates the remaining resource need of each process.
+- It is a 2-D array of size `n*m` that indicates the remaining resource need of each process.
 - Need [ i, j ] = k means process P\_i currently needs `k` instances of resource type R\_j
 - Need [ i, j ] = Max [ i, j ] – Allocation [ i, j ]
 
